@@ -2,6 +2,7 @@
 #define CONTROLLER_HH
 
 #include <cstdint>
+#include <list>
 
 /* Congestion controller interface */
 
@@ -11,7 +12,11 @@ private:
   bool debug_; /* Enables debugging output */
 
   /* Add member variables here */
-
+  double the_window_size = 15;
+  uint64_t avg_rtt = 100;
+  uint64_t min_rtt = -1;
+  uint64_t last_shrink = 0;
+  std::list<uint64_t> rtts;
 public:
   /* Public interface for the congestion controller */
   /* You can change these if you prefer, but will need to change
